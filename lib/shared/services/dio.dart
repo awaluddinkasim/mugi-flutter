@@ -77,7 +77,7 @@ class Request {
         errorDescription = "Menerima timeout dalam koneksi dengan API server";
         break;
       case DioExceptionType.badResponse:
-        errorDescription = "Invalid status code: ${error.response?.statusCode}";
+        errorDescription = "${error.response?.data['message']}";
         break;
       case DioExceptionType.cancel:
         errorDescription = "Request ke API server dibatalkan";
