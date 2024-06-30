@@ -1,5 +1,6 @@
 import 'package:mugi/models/auth.dart';
 import 'package:mugi/models/data_login.dart';
+import 'package:mugi/models/data_user.dart';
 import 'package:mugi/models/user.dart';
 import 'package:mugi/shared/services/dio.dart';
 
@@ -29,8 +30,12 @@ class AuthService {
     return Auth(token: token, user: user);
   }
 
-  Future<User> updateUser(User user) async {
-    final result = await Request.patch('/user', data: user.toJson());
+  Future<User> updateUser(DataUser data, {required String token}) async {
+    final result = await Request.patch('/user', data: data.toJson(), headers: {
+      'Authorization': 'Bearer $token',
+    });
+
+    print(result);
 
     return User.fromJson(result['user']);
   }

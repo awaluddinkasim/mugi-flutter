@@ -14,8 +14,7 @@ class Request {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      final Response response =
-          await _dio.get(url, options: Options(headers: headers));
+      final Response response = await _dio.get(url, options: Options(headers: headers));
       return response.data;
     } on DioException catch (e) {
       throw _handleError(e);
@@ -45,7 +44,7 @@ class Request {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      final Response response = await _dio.put(
+      final Response response = await _dio.patch(
         url,
         data: data,
         options: Options(headers: headers),
@@ -61,8 +60,7 @@ class Request {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      final Response response =
-          await _dio.delete(url, options: Options(headers: headers));
+      final Response response = await _dio.delete(url, options: Options(headers: headers));
       return response.data;
     } on DioException catch (e) {
       throw _handleError(e);

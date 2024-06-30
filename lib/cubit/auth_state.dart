@@ -29,9 +29,3 @@ class AuthFailed extends AuthState {
   @override
   List<Object> get props => [message];
 }
-
-class UserUpdated extends AuthState {
-  final Auth auth;
-
-  const UserUpdated(this.auth);
-}

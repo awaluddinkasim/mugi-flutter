@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mugi/cubit/auth_state.dart';
 import 'package:mugi/models/data_login.dart';
+import 'package:mugi/models/data_user.dart';
 import 'package:mugi/models/user.dart';
 import 'package:mugi/shared/services/auth.dart';
 
@@ -63,16 +64,16 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> updateUser(User user) async {
+  Future<void> updateUser(DataUser user) async {
     if (state is AuthSuccess) {
       final currentState = state as AuthSuccess;
 
       emit(AuthLoading());
 
       try {
-        User result = await _authService.updateUser(user);
+        User result = await _authService.updateUser(user, token: currentState.auth.token);
 
-        emit(UserUpdated(currentState.auth.copyWith(user: result)));
+        emit(AuthSuccess(currentState.auth.copyWith(user: result)));
       } catch (e) {
         emit(AuthFailed(e.toString()));
 
