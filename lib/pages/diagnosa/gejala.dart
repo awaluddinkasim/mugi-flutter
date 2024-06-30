@@ -18,8 +18,8 @@ class DiagnosaScreen extends StatefulWidget {
 
 class _DiagnosaScreenState extends State<DiagnosaScreen> {
   List<Gejala> _daftarGejala = [];
-  final List<DataGejala> _gejalaPengguna = [];
 
+  final List<DataGejala> _gejalaPengguna = [];
   int _gejalaIndex = 0;
   bool _isStarted = false;
 
