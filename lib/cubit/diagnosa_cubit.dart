@@ -17,7 +17,11 @@ class DiagnosaCubit extends Cubit<DiagnosaState> {
       final authState = authCubit.state;
       if (authState is AuthSuccess) {
         final token = authState.auth.token;
-        final result = await _diagnosaService.diagnosa(token: token, data: data);
+        final result = await _diagnosaService.diagnosa(
+          token: token,
+          data: data,
+        );
+
         emit(DiagnosaSuccess(result));
       } else {
         emit(DiagnosaFailed("User tidak terautentikasi"));

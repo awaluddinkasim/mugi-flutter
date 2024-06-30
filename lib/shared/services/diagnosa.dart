@@ -7,14 +7,15 @@ class DiagnosaService {
     required String token,
     required List<DataGejala> data,
   }) async {
-    final formData = data.map((e) {
-      if (e.jawaban == 'Ya') {
-        return e.id;
-      }
-    }).toList();
+    final formData = data
+        .where(
+          (e) => e.jawaban == 'Ya',
+        )
+        .map((e) => e.id)
+        .toList();
 
     final result = await Request.post('/penyakit', data: {
-      'gejala': formData
+      'gejala': [...formData]
     }, headers: {
       'Authorization': 'Bearer $token',
     });

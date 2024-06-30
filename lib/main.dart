@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mugi/cubit/auth_cubit.dart';
 import 'package:mugi/cubit/auth_state.dart';
+import 'package:mugi/cubit/diagnosa_cubit.dart';
 import 'package:mugi/cubit/gejala_cubit.dart';
 import 'package:mugi/cubit/register_cubit.dart';
 import 'package:mugi/pages/login/view.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => GejalaCubit(AuthCubit())),
+        BlocProvider(create: (context) => DiagnosaCubit(AuthCubit())),
       ],
       child: MaterialApp(
         title: 'SPK MuGi',

@@ -5,6 +5,7 @@ import 'package:mugi/cubit/gejala_cubit.dart';
 import 'package:mugi/cubit/gejala_state.dart';
 import 'package:mugi/models/data_gejala.dart';
 import 'package:mugi/models/gejala.dart';
+import 'package:mugi/pages/diagnosa/hasil.dart';
 
 enum Jawaban { ya, tidak }
 
@@ -29,6 +30,7 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
       body: SafeArea(
         child: BlocBuilder<GejalaCubit, GejalaState>(
           builder: (context, state) {
+            print(state);
             if (state is GejalaLoading) {
               return const Center(
                   child: CircularProgressIndicator(
@@ -46,12 +48,17 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                 children: [
                   LinearProgressIndicator(
                     color: Colors.blue,
-                    value: _isStarted ? _gejalaIndex / _daftarGejala.length : null,
+                    value: _isStarted
+                        ? (_gejalaIndex + 1) / _daftarGejala.length
+                        : null,
                   ),
                   Expanded(child: Container()),
                   Card(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 22),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12,
+                        horizontal: 22,
+                      ),
                       child: _isStarted
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -71,10 +78,12 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                                 RadioListTile(
                                   title: const Text('Ya'),
                                   value: "Ya",
-                                  groupValue: _gejalaPengguna[_gejalaIndex].jawaban,
+                                  groupValue:
+                                      _gejalaPengguna[_gejalaIndex].jawaban,
                                   onChanged: (value) {
                                     setState(() {
-                                      _gejalaPengguna[_gejalaIndex] = DataGejala(
+                                      _gejalaPengguna[_gejalaIndex] =
+                                          DataGejala(
                                         id: _daftarGejala[_gejalaIndex].id,
                                         jawaban: "Ya",
                                       );
@@ -85,10 +94,12 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                                 RadioListTile(
                                   title: const Text('Tidak'),
                                   value: "Tidak",
-                                  groupValue: _gejalaPengguna[_gejalaIndex].jawaban,
+                                  groupValue:
+                                      _gejalaPengguna[_gejalaIndex].jawaban,
                                   onChanged: (value) {
                                     setState(() {
-                                      _gejalaPengguna[_gejalaIndex] = DataGejala(
+                                      _gejalaPengguna[_gejalaIndex] =
+                                          DataGejala(
                                         id: _daftarGejala[_gejalaIndex].id,
                                         jawaban: "Tidak",
                                       );
@@ -100,7 +111,8 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                                   height: 12,
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     FilledButton(
                                       onPressed: _gejalaIndex == 0
@@ -124,7 +136,17 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                                     else
                                       FilledButton(
                                         onPressed: () {
-                                          context.read<DiagnosaCubit>().diagnosa(_gejalaPengguna);
+                                          context
+                                              .read<DiagnosaCubit>()
+                                              .diagnosa(_gejalaPengguna);
+
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const HasilDiagnosaScreen(),
+                                            ),
+                                          );
                                         },
                                         child: const Text("Selesai"),
                                       ),
@@ -159,25 +181,40 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                 ],
               );
             } else {
-              return const Center(
-                child: Card(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 30, horizontal: 12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          "Diagnosa",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 30,
+                        horizontal: 12,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Text(
+                            "Data belum siap",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(
+                            height: 24,
+                          ),
+                          FilledButton.tonal(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Kembali"),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               );
             }
           },

@@ -1,13 +1,15 @@
+import 'package:mugi/models/hasil.dart';
+
 class HasilDiagnosa {
   String tanggal;
-  List hasil;
+  List<Hasil> hasil;
 
   HasilDiagnosa({required this.tanggal, required this.hasil});
 
   factory HasilDiagnosa.fromJson(Map<String, dynamic> json) {
     return HasilDiagnosa(
       tanggal: json['tanggal'],
-      hasil: json['hasil'],
+      hasil: List<Hasil>.from(json['hasil'].map((x) => Hasil.fromJson(x))),
     );
   }
 }

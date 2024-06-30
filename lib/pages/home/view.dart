@@ -7,7 +7,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        children: [Text("Home")],
+        children: [
+          Text("Home"),
+        ],
       ),
     );
   }

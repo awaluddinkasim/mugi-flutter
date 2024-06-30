@@ -25,6 +25,7 @@ class GejalaCubit extends Cubit<GejalaState> {
         emit(const GejalaFailed("User tidak terautentikasi"));
       }
     } catch (e) {
+      print(e.toString());
       emit(GejalaFailed(e.toString()));
     }
   }

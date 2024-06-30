@@ -8,6 +8,7 @@ class GejalaService {
     });
 
     List<Gejala> daftarGejala = [];
+
     for (var item in result['daftarGejala']) {
       daftarGejala.add(Gejala.fromJson(item));
     }
