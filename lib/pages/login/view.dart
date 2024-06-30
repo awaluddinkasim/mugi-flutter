@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mugi/cubit/auth_cubit.dart';
 import 'package:mugi/cubit/auth_state.dart';
+import 'package:mugi/cubit/riwayat_cubit.dart';
 import 'package:mugi/models/data_login.dart';
 import 'package:mugi/pages/home/view.dart';
 import 'package:mugi/pages/login/controller.dart';
@@ -53,6 +54,8 @@ class _LoginScreenState extends LoginController {
                   BlocConsumer<AuthCubit, AuthState>(
                     listener: (context, state) {
                       if (state is AuthSuccess) {
+                        context.read<RiwayatCubit>().getRiwayat();
+
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

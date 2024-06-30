@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mugi/cubit/auth_cubit.dart';
 import 'package:mugi/cubit/auth_state.dart';
 import 'package:mugi/pages/login/view.dart';
+import 'package:mugi/pages/profil/edit.dart';
 import 'package:mugi/shared/widgets/profile_detail.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -63,7 +64,8 @@ class ProfileScreen extends StatelessWidget {
                             children: [
                               Text(
                                 state.auth.user.nama,
-                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 state.auth.user.email,
@@ -75,7 +77,14 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProfileEditScreen(),
+                              ),
+                            );
+                          },
                           icon: const Icon(Icons.edit_note),
                         ),
                       ],
@@ -86,7 +95,8 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Card(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 32),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [

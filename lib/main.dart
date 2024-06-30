@@ -5,6 +5,7 @@ import 'package:mugi/cubit/auth_state.dart';
 import 'package:mugi/cubit/diagnosa_cubit.dart';
 import 'package:mugi/cubit/gejala_cubit.dart';
 import 'package:mugi/cubit/register_cubit.dart';
+import 'package:mugi/cubit/riwayat_cubit.dart';
 import 'package:mugi/pages/login/view.dart';
 import 'package:mugi/pages/page.dart';
 
@@ -22,8 +23,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
-        BlocProvider(create: (context) => GejalaCubit(AuthCubit())),
-        BlocProvider(create: (context) => DiagnosaCubit(AuthCubit())),
+        BlocProvider(create: (context) => GejalaCubit()),
+        BlocProvider(create: (context) => DiagnosaCubit()),
+        BlocProvider(create: (context) => RiwayatCubit()),
       ],
       child: MaterialApp(
         title: 'SPK MuGi',
@@ -33,6 +35,8 @@ class MyApp extends StatelessWidget {
         ),
         home: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
           if (state is AuthSuccess) {
+            context.read<RiwayatCubit>().getRiwayat();
+
             return const AppPage();
           } else if (state is AuthLoading) {
             return const Scaffold(
