@@ -23,7 +23,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   final nama = TextEditingController();
   final noHP = TextEditingController();
 
-  String? jenisKelamin;
+  late String jenisKelamin;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +103,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           ),
                         ),
                         Select(
-                          value: jenisKelamin!,
+                          value: jenisKelamin,
                           label: "Jenis Kelamin",
                           hintText: "Pilih Jenis Kelamin",
                           icon: const Icon(Icons.transgender),
@@ -154,7 +154,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                       nama: nama.text,
                                       email: email.text,
                                       password: password.text,
-                                      jk: jenisKelamin!,
+                                      jk: jenisKelamin,
                                       noHp: noHP.text,
                                     ),
                                   );
