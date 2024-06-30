@@ -83,33 +83,22 @@ class _LoginScreenState extends LoginController {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              const Text(
-                                "Email",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
                               Input(
+                                label: "Email",
                                 controller: email,
+                                icon: const Icon(Icons.email),
+                                hintText: "Masukkan email",
                                 keyboardType: TextInputType.emailAddress,
                               ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              const Text(
-                                "Password",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
                               Input(
+                                label: "Password",
                                 controller: password,
+                                icon: const Icon(Icons.lock),
+                                hintText: "Masukkan password",
                                 obscureText: true,
                               ),
                               const SizedBox(
-                                height: 40,
+                                height: 20,
                               ),
                               FilledButton(
                                 onPressed: () {

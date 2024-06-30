@@ -4,6 +4,7 @@ import 'package:mugi/cubit/riwayat_cubit.dart';
 import 'package:mugi/cubit/riwayat_state.dart';
 import 'package:mugi/models/hasil_diagnosa.dart';
 import 'package:mugi/pages/riwayat/detail.dart';
+import 'package:mugi/shared/widgets/text_header.dart';
 
 class RiwayatListScreen extends StatelessWidget {
   const RiwayatListScreen({super.key});
@@ -16,13 +17,8 @@ class RiwayatListScreen extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          const Text(
-            "Riwayat Diagnosa",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+          const TextHeader(
+            title: "Riwayat Diagnosa",
           ),
           const SizedBox(
             height: 18,
@@ -85,13 +81,11 @@ class RiwayatListScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Expanded(
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
+                                          crossAxisAlignment: CrossAxisAlignment.stretch,
                                           children: [
                                             Text(diagnosa.tanggal),
                                             Text(

@@ -5,6 +5,7 @@ import 'package:mugi/cubit/auth_state.dart';
 import 'package:mugi/pages/login/view.dart';
 import 'package:mugi/pages/profil/edit.dart';
 import 'package:mugi/shared/widgets/profile_detail.dart';
+import 'package:mugi/shared/widgets/text_header.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -29,13 +30,8 @@ class ProfileScreen extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text(
-                    "Profile",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                  const TextHeader(
+                    title: "Profile",
                   ),
                   const SizedBox(
                     height: 48,
@@ -64,8 +60,7 @@ class ProfileScreen extends StatelessWidget {
                             children: [
                               Text(
                                 state.auth.user.nama,
-                                style: const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 state.auth.user.email,
@@ -95,8 +90,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Card(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 32),
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [

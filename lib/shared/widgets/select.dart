@@ -1,31 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class Input extends StatelessWidget {
-  const Input({
+class Select extends StatelessWidget {
+  const Select({
     super.key,
-    required this.controller,
     required this.label,
-    required this.icon,
     required this.hintText,
-    this.obscureText = false,
-    this.keyboardType = TextInputType.text,
-    this.textCapitalization = TextCapitalization.none,
+    required this.icon,
+    required this.items,
+    required this.onChanged,
+    required this.value,
     this.validator,
-    this.inputFormatters,
-    this.helperText,
   });
 
+  final String value;
   final String label;
   final String hintText;
   final Icon icon;
-  final TextEditingController controller;
-  final TextInputType keyboardType;
-  final TextCapitalization textCapitalization;
-  final bool obscureText;
-  final String Function(String?)? validator;
-  final List<TextInputFormatter>? inputFormatters;
-  final Text? helperText;
+  final List<DropdownMenuItem> items;
+  final Function(dynamic) onChanged;
+  final String Function(dynamic)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +32,16 @@ class Input extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        TextFormField(
-          textCapitalization: textCapitalization,
-          keyboardType: keyboardType,
-          controller: controller,
-          obscureText: obscureText,
+        DropdownButtonFormField(
+          value: value,
+          items: items,
+          hint: Text(hintText),
+          onChanged: onChanged,
           validator: validator,
-          inputFormatters: inputFormatters,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.lightBlue.shade50.withOpacity(0.2),
-            prefixIcon: icon,
-            hintText: hintText,
+            prefixIcon: const Icon(Icons.transgender),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: const BorderSide(
@@ -73,7 +64,6 @@ class Input extends StatelessWidget {
             ),
           ),
         ),
-        if (helperText != null) helperText!,
         const SizedBox(
           height: 20,
         ),

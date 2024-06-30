@@ -53,18 +53,58 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
                 const SizedBox(
-                  height: 24,
+                  height: 12,
                 ),
-                FilledButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DiagnosaScreen(),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 32,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        "Sistem Pendukung Keputusan (SPK) untuk penyakit mulut dan gigi merupakan aplikasi yang dirancang untuk membantu dokter gigi dalam proses pengambilan keputusan klinis.",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
                       ),
-                    );
-                  },
-                  child: const Text("Diagnosa"),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      const Text(
+                        "Silahkan tekan Diagnosa untuk memulai.",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      FilledButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DiagnosaScreen(),
+                            ),
+                          );
+                        },
+                        style: const ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll<Color>(
+                            Colors.blue,
+                          ),
+                        ),
+                        child: const Text("Diagnosa"),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 24,
@@ -136,8 +176,7 @@ class HomeScreen extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              RiwayatDetailScreen(
+                                          builder: (context) => RiwayatDetailScreen(
                                             diagnosa: diagnosa,
                                           ),
                                         ),
@@ -154,13 +193,11 @@ class HomeScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Expanded(
                                             child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
+                                              crossAxisAlignment: CrossAxisAlignment.stretch,
                                               children: [
                                                 Text(diagnosa.tanggal),
                                                 Text(

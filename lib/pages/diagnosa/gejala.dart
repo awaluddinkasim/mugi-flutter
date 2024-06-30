@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mugi/cubit/diagnosa_cubit.dart';
 import 'package:mugi/cubit/gejala_cubit.dart';
 import 'package:mugi/cubit/gejala_state.dart';
+import 'package:mugi/cubit/riwayat_cubit.dart';
 import 'package:mugi/models/data_gejala.dart';
 import 'package:mugi/models/gejala.dart';
 import 'package:mugi/pages/diagnosa/hasil.dart';
@@ -47,9 +48,7 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                 children: [
                   LinearProgressIndicator(
                     color: Colors.blue,
-                    value: _isStarted
-                        ? (_gejalaIndex + 1) / _daftarGejala.length
-                        : null,
+                    value: _isStarted ? (_gejalaIndex + 1) / _daftarGejala.length : null,
                   ),
                   Expanded(child: Container()),
                   Card(
@@ -77,12 +76,10 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                                 RadioListTile(
                                   title: const Text('Ya'),
                                   value: "Ya",
-                                  groupValue:
-                                      _gejalaPengguna[_gejalaIndex].jawaban,
+                                  groupValue: _gejalaPengguna[_gejalaIndex].jawaban,
                                   onChanged: (value) {
                                     setState(() {
-                                      _gejalaPengguna[_gejalaIndex] =
-                                          DataGejala(
+                                      _gejalaPengguna[_gejalaIndex] = DataGejala(
                                         id: _daftarGejala[_gejalaIndex].id,
                                         jawaban: "Ya",
                                       );
@@ -93,12 +90,10 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                                 RadioListTile(
                                   title: const Text('Tidak'),
                                   value: "Tidak",
-                                  groupValue:
-                                      _gejalaPengguna[_gejalaIndex].jawaban,
+                                  groupValue: _gejalaPengguna[_gejalaIndex].jawaban,
                                   onChanged: (value) {
                                     setState(() {
-                                      _gejalaPengguna[_gejalaIndex] =
-                                          DataGejala(
+                                      _gejalaPengguna[_gejalaIndex] = DataGejala(
                                         id: _daftarGejala[_gejalaIndex].id,
                                         jawaban: "Tidak",
                                       );
@@ -110,8 +105,7 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                                   height: 12,
                                 ),
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     FilledButton(
                                       onPressed: _gejalaIndex == 0
@@ -135,15 +129,14 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                                     else
                                       FilledButton(
                                         onPressed: () {
-                                          context
-                                              .read<DiagnosaCubit>()
-                                              .diagnosa(_gejalaPengguna);
+                                          context.read<DiagnosaCubit>().diagnosa(_gejalaPengguna);
+
+                                          context.read<RiwayatCubit>().getRiwayat();
 
                                           Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const HasilDiagnosaScreen(),
+                                              builder: (context) => const HasilDiagnosaScreen(),
                                             ),
                                           );
                                         },
@@ -163,6 +156,16 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   ),
+                                ),
+                                const Text(
+                                  "Anda akan diberikan beberapa pertanyaan terkait gejala yang dialami. Jawablah dengan benar sesuai dengan gejala yang ada.",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 12,
                                 ),
                                 FilledButton(
                                   onPressed: () {
