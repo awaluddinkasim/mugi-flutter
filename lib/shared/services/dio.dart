@@ -14,7 +14,8 @@ class Request {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      final Response response = await _dio.get(url, options: Options(headers: headers));
+      final Response response =
+          await _dio.get(url, options: Options(headers: headers));
       return response.data;
     } on DioException catch (e) {
       throw _handleError(e);
@@ -60,7 +61,8 @@ class Request {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      final Response response = await _dio.delete(url, options: Options(headers: headers));
+      final Response response =
+          await _dio.delete(url, options: Options(headers: headers));
       return response.data;
     } on DioException catch (e) {
       throw _handleError(e);
@@ -71,19 +73,13 @@ class Request {
     String errorDescription = "";
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
-        errorDescription = "Koneksi timeout dengan API server";
-        break;
-      case DioExceptionType.receiveTimeout:
-        errorDescription = "Menerima timeout dalam koneksi dengan API server";
+        errorDescription = "Koneksi timeout";
         break;
       case DioExceptionType.badResponse:
         errorDescription = "${error.response?.data['message']}";
         break;
       case DioExceptionType.cancel:
         errorDescription = "Request ke API server dibatalkan";
-        break;
-      case DioExceptionType.unknown:
-        errorDescription = "Terjadi kesalahan yang tidak diketahui";
         break;
       default:
         errorDescription = "Terjadi kesalahan yang tidak diketahui";

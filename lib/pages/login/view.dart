@@ -62,12 +62,6 @@ class _LoginScreenState extends LoginController {
                             builder: (context) => const HomeScreen(),
                           ),
                         );
-                      } else if (state is AuthFailed) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(state.message),
-                          ),
-                        );
                       }
                     },
                     builder: (context, state) {
@@ -76,6 +70,15 @@ class _LoginScreenState extends LoginController {
                           child: CircularProgressIndicator(),
                         );
                       } else {
+                        if (state is AuthFailed) {
+                          Future.delayed(Duration.zero, () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(state.message),
+                              ),
+                            );
+                          });
+                        }
                         return Form(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
