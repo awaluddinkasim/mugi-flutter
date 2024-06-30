@@ -55,7 +55,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                     jenisKelamin = state.auth.user.jk;
                   }
 
-                  print(state);
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,

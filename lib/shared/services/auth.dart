@@ -35,8 +35,6 @@ class AuthService {
       'Authorization': 'Bearer $token',
     });
 
-    print(result);
-
     return User.fromJson(result['user']);
   }
 }
