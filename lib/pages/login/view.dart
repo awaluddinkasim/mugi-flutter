@@ -56,11 +56,12 @@ class _LoginScreenState extends LoginController {
                       if (state is AuthSuccess) {
                         context.read<RiwayatCubit>().getRiwayat();
 
-                        Navigator.pushReplacement(
+                        Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const HomeScreen(),
                           ),
+                          (route) => false,
                         );
                       }
                     },
