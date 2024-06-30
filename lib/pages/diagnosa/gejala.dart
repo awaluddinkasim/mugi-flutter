@@ -18,7 +18,7 @@ class DiagnosaScreen extends StatefulWidget {
 
 class _DiagnosaScreenState extends State<DiagnosaScreen> {
   List<Gejala> _daftarGejala = [];
-  List<DataGejala> _gejalaPengguna = [];
+  final List<DataGejala> _gejalaPengguna = [];
 
   int _gejalaIndex = 0;
   bool _isStarted = false;
@@ -30,7 +30,6 @@ class _DiagnosaScreenState extends State<DiagnosaScreen> {
       body: SafeArea(
         child: BlocBuilder<GejalaCubit, GejalaState>(
           builder: (context, state) {
-            print(state);
             if (state is GejalaLoading) {
               return const Center(
                   child: CircularProgressIndicator(

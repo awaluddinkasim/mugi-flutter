@@ -61,6 +61,7 @@ class RiwayatDetailScreen extends StatelessWidget {
           else
             for (Hasil hasil in daftarHasil)
               ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 24),
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [

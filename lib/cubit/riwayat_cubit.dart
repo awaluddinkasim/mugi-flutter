@@ -24,7 +24,6 @@ class RiwayatCubit extends Cubit<RiwayatState> {
         emit(RiwayatFailed("User tidak terautentikasi"));
       }
     } catch (e) {
-      print(e.toString());
       emit(RiwayatFailed(e.toString()));
     }
   }

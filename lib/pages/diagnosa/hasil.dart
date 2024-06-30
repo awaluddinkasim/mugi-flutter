@@ -72,6 +72,8 @@ class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
                 else
                   for (Hasil hasil in daftarHasil)
                     ListTile(
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 24),
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
