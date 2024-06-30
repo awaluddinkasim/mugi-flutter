@@ -58,6 +58,19 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                     },
                   );
                 }
+                if (state is AuthFailed) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return DialogError(
+                        message: state.message,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      );
+                    },
+                  );
+                }
               },
               builder: (context, state) {
                 if (state is AuthLoading) {
@@ -70,21 +83,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                     nama.text = state.auth.user.nama;
                     noHP.text = state.auth.user.noHp;
                     jenisKelamin = state.auth.user.jk;
-                  }
-                  if (state is AuthFailed) {
-                    Future.delayed(Duration.zero, () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return DialogError(
-                            message: state.message,
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          );
-                        },
-                      );
-                    });
                   }
 
                   return Padding(

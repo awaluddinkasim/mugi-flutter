@@ -58,6 +58,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   );
                 }
+                if (state is RegisterFailed) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return DialogError(
+                        message: state.message,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      );
+                    },
+                  );
+                }
               },
               builder: (context, state) {
                 if (state is RegisterLoading) {
@@ -65,21 +78,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: CircularProgressIndicator(),
                   );
                 } else {
-                  if (state is RegisterFailed) {
-                    Future.delayed(Duration.zero, () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return DialogError(
-                            message: state.message,
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          );
-                        },
-                      );
-                    });
-                  }
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,

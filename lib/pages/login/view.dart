@@ -5,7 +5,6 @@ import 'package:mugi/cubit/auth_state.dart';
 import 'package:mugi/cubit/riwayat_cubit.dart';
 import 'package:mugi/models/data_login.dart';
 import 'package:mugi/pages/home/view.dart';
-import 'package:mugi/pages/login/controller.dart';
 import 'package:mugi/pages/register/view.dart';
 import 'package:mugi/shared/widgets/dialog_error.dart';
 import 'package:mugi/shared/widgets/input.dart';
@@ -17,7 +16,10 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends LoginController {
+class _LoginScreenState extends State<LoginScreen> {
+  final email = TextEditingController();
+  final password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +67,21 @@ class _LoginScreenState extends LoginController {
                           (route) => false,
                         );
                       }
+                      if (state is AuthFailed) {
+                        Future.delayed(Duration.zero, () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return DialogError(
+                                message: state.message,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              );
+                            },
+                          );
+                        });
+                      }
                     },
                     builder: (context, state) {
                       if (state is AuthLoading) {
@@ -72,25 +89,36 @@ class _LoginScreenState extends LoginController {
                           child: CircularProgressIndicator(),
                         );
                       } else {
-                        if (state is AuthFailed) {
-                          Future.delayed(Duration.zero, () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return DialogError(
-                                  message: state.message,
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                );
-                              },
-                            );
-                          });
-                        }
                         return Form(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
+                              if (state is AuthFailed)
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.red.shade50,
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(color: Colors.redAccent),
+                                      ),
+                                      child: Text(
+                                        state.message,
+                                        style: const TextStyle(
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 24,
+                                    ),
+                                  ],
+                                ),
                               Input(
                                 label: "Email",
                                 controller: email,
