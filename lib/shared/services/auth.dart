@@ -15,7 +15,7 @@ class AuthService {
   }
 
   Future<void> logout({required String token}) async {
-    await Request.delete('/logout', headers: {
+    await Request.post('/logout', headers: {
       'Authorization': 'Bearer $token',
     });
   }
