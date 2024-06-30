@@ -40,6 +40,7 @@ class Input extends StatelessWidget {
           ),
         ),
         TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           textCapitalization: textCapitalization,
           keyboardType: keyboardType,
           controller: controller,

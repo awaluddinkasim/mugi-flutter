@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mugi/cubit/register_cubit.dart';
 import 'package:mugi/cubit/register_state.dart';
 import 'package:mugi/models/data_user.dart';
+import 'package:mugi/shared/widgets/dialog_error.dart';
+import 'package:mugi/shared/widgets/dialog_success.dart';
 import 'package:mugi/shared/widgets/input.dart';
 import 'package:mugi/shared/widgets/select.dart';
 import 'package:mugi/shared/widgets/text_header.dart';
@@ -41,13 +43,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           Form(
             key: _formKey,
-            child: BlocBuilder<RegisterCubit, RegisterState>(
+            child: BlocConsumer<RegisterCubit, RegisterState>(
+              listener: (context, state) {
+                if (state is RegisterSuccess) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return DialogSuccess(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                      );
+                    },
+                  );
+                }
+              },
               builder: (context, state) {
                 if (state is RegisterLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else {
+                  if (state is RegisterFailed) {
+                    Future.delayed(Duration.zero, () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return DialogError(
+                            message: state.message,
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          );
+                        },
+                      );
+                    });
+                  }
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,

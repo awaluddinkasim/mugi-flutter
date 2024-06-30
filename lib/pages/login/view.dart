@@ -7,6 +7,7 @@ import 'package:mugi/models/data_login.dart';
 import 'package:mugi/pages/home/view.dart';
 import 'package:mugi/pages/login/controller.dart';
 import 'package:mugi/pages/register/view.dart';
+import 'package:mugi/shared/widgets/dialog_error.dart';
 import 'package:mugi/shared/widgets/input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -73,10 +74,16 @@ class _LoginScreenState extends LoginController {
                       } else {
                         if (state is AuthFailed) {
                           Future.delayed(Duration.zero, () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(state.message),
-                              ),
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return DialogError(
+                                  message: state.message,
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                );
+                              },
                             );
                           });
                         }

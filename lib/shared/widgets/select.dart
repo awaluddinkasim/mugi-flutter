@@ -36,6 +36,7 @@ class Select extends StatelessWidget {
           value: value,
           items: items,
           hint: Text(hintText),
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onChanged: onChanged,
           validator: validator,
           decoration: InputDecoration(
