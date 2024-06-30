@@ -13,7 +13,7 @@ class GejalaInitial extends GejalaState {}
 class GejalaLoading extends GejalaState {}
 
 class GejalaSuccess extends GejalaState {
-  final Gejala gejala;
+  final List<Gejala> gejala;
 
   const GejalaSuccess(this.gejala);
 

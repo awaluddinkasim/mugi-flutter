@@ -1,6 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mugi/cubit/gejala_cubit.dart';
 import 'package:mugi/pages/diagnosa/view.dart';
 import 'package:mugi/pages/home/view.dart';
 import 'package:mugi/pages/profil/view.dart';
@@ -32,6 +34,7 @@ class _AppPageState extends State<AppPage> {
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         onPressed: () {
+          context.read<GejalaCubit>().getGejala();
           Navigator.push(
             context,
             MaterialPageRoute(

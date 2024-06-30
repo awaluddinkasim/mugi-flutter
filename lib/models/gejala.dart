@@ -1,5 +1,5 @@
 class Gejala {
-  String id;
+  int id;
   String nama;
 
   Gejala({
