@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mugi/cubit/register_state.dart';
-import 'package:mugi/models/data_register.dart';
+import 'package:mugi/models/data_user.dart';
 import 'package:mugi/shared/services/register.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -8,7 +8,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   RegisterCubit() : super(RegisterInitial());
 
-  Future<void> register(DataRegister data) async {
+  Future<void> register(DataUser data) async {
     emit(RegisterLoading());
     try {
       await _registerService.register(data);
