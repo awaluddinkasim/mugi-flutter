@@ -23,7 +23,7 @@ class Input extends StatelessWidget {
   final TextInputType keyboardType;
   final TextCapitalization textCapitalization;
   final bool obscureText;
-  final String Function(String?)? validator;
+  final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
   final Text? helperText;
 

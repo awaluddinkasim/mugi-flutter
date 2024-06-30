@@ -18,7 +18,7 @@ class Select extends StatelessWidget {
   final Icon icon;
   final List<DropdownMenuItem> items;
   final Function(dynamic) onChanged;
-  final String Function(dynamic)? validator;
+  final String? Function(dynamic)? validator;
 
   @override
   Widget build(BuildContext context) {

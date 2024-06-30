@@ -68,6 +68,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           hintText: "Masukkan Nama",
                           controller: nama,
                           keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Wajib Diisi";
+                            }
+                            return null;
+                          },
                         ),
                         Input(
                           label: "Email",
@@ -75,6 +81,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           hintText: "Masukkan Email",
                           controller: email,
                           keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Wajib Diisi";
+                            }
+                            return null;
+                          },
                         ),
                         Input(
                           label: "Ganti Password",
@@ -108,6 +120,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           onChanged: (value) {
                             jenisKelamin = value;
                           },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Wajib Diisi";
+                            }
+                            return null;
+                          },
                         ),
                         Input(
                           label: "No. HP",
@@ -118,21 +136,29 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
                           ],
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Wajib Diisi";
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         FilledButton(
                           onPressed: () {
-                            context.read<AuthCubit>().updateUser(
-                                  DataUser(
-                                    nama: nama.text,
-                                    email: email.text,
-                                    password: password.text,
-                                    jk: jenisKelamin!,
-                                    noHp: noHP.text,
-                                  ),
-                                );
+                            if (_formKey.currentState!.validate()) {
+                              context.read<AuthCubit>().updateUser(
+                                    DataUser(
+                                      nama: nama.text,
+                                      email: email.text,
+                                      password: password.text,
+                                      jk: jenisKelamin!,
+                                      noHp: noHP.text,
+                                    ),
+                                  );
+                            }
                           },
                           child: const Text("Simpan"),
                         ),
