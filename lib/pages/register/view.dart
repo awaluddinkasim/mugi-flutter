@@ -25,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final nama = TextEditingController();
   final noHP = TextEditingController();
 
-  String jenisKelamin = "Laki-laki";
+  String jenisKelamin = "Pilih";
 
   @override
   Widget build(BuildContext context) {
@@ -126,9 +126,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Select(
                           value: jenisKelamin,
                           label: "Jenis Kelamin",
-                          hintText: "Pilih Jenis Kelamin",
                           icon: const Icon(Icons.transgender),
                           items: const [
+                            DropdownMenuItem(
+                              value: "Pilih",
+                              child: Text("Pilih"),
+                            ),
                             DropdownMenuItem(
                               value: "Laki-laki",
                               child: Text("Laki-laki"),
@@ -142,7 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             jenisKelamin = value;
                           },
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
+                            if (value == "Pilih" || value.isEmpty) {
                               return "Wajib Diisi";
                             }
                             return null;

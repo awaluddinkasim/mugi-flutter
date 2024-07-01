@@ -136,7 +136,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         Select(
                           value: jenisKelamin,
                           label: "Jenis Kelamin",
-                          hintText: "Pilih Jenis Kelamin",
                           icon: const Icon(Icons.transgender),
                           items: const [
                             DropdownMenuItem(

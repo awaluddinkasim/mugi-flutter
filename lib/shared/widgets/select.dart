@@ -4,7 +4,6 @@ class Select extends StatelessWidget {
   const Select({
     super.key,
     required this.label,
-    required this.hintText,
     required this.icon,
     required this.items,
     required this.onChanged,
@@ -14,7 +13,6 @@ class Select extends StatelessWidget {
 
   final String value;
   final String label;
-  final String hintText;
   final Icon icon;
   final List<DropdownMenuItem> items;
   final Function(dynamic) onChanged;
@@ -35,7 +33,6 @@ class Select extends StatelessWidget {
         DropdownButtonFormField(
           value: value,
           items: items,
-          hint: Text(hintText),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onChanged: onChanged,
           validator: validator,
