@@ -72,8 +72,7 @@ class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
                 else
                   for (Hasil hasil in daftarHasil)
                     ListTile(
-                      contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 24),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 24),
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -83,7 +82,7 @@ class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            "Persentase: ${hasil.persentase}%",
+                            "Kecocokan Gejala: ${hasil.persentase}%",
                             style: const TextStyle(
                               color: Colors.black54,
                               fontWeight: FontWeight.bold,
@@ -93,7 +92,38 @@ class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
                         ],
                       ),
                       trailing: FilledButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return SingleChildScrollView(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 24),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Text("Nama Penyakit"),
+                                      Text(
+                                        hasil.penyakit.nama,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold, fontSize: 20),
+                                      ),
+                                      const SizedBox(
+                                        height: 12,
+                                      ),
+                                      const Text("Cara Penanganan"),
+                                      Text(
+                                        hasil.penyakit.solusi,
+                                        style: const TextStyle(fontSize: 20),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
                         style: const ButtonStyle(
                           visualDensity: VisualDensity.compact,
                         ),

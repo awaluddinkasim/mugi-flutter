@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mugi/cubit/auth_cubit.dart';
 import 'package:mugi/cubit/auth_state.dart';
+import 'package:mugi/cubit/gejala_cubit.dart';
 import 'package:mugi/cubit/riwayat_cubit.dart';
 import 'package:mugi/cubit/riwayat_state.dart';
 import 'package:mugi/models/hasil_diagnosa.dart';
@@ -89,6 +90,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       FilledButton(
                         onPressed: () {
+                          context.read<GejalaCubit>().getGejala();
                           Navigator.push(
                             context,
                             MaterialPageRoute(

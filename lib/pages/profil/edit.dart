@@ -123,6 +123,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           icon: const Icon(Icons.lock),
                           hintText: "Masukkan Password Baru",
                           controller: password,
+                          obscureText: true,
                           helperText: const Text(
                             "Kosongkan jika tidak ingin mengganti password",
                             style: TextStyle(
