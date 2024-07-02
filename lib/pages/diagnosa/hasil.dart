@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:mugi/cubit/diagnosa_cubit.dart';
 import 'package:mugi/cubit/diagnosa_state.dart';
 import 'package:mugi/models/hasil.dart';
@@ -16,6 +17,8 @@ class HasilDiagnosaScreen extends StatefulWidget {
 class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
   @override
   Widget build(BuildContext context) {
+    var formatter = NumberFormat('#.##');
+
     return Scaffold(
       body: BlocBuilder<DiagnosaCubit, DiagnosaState>(
         builder: (context, state) {
@@ -91,7 +94,7 @@ class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              "Kecocokan Gejala: ${hasil.persentase}%",
+                              "Kecocokan Gejala: ${formatter.format(hasil.persentase)}%",
                               style: const TextStyle(
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold,

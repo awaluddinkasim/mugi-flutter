@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:mugi/models/hasil.dart';
 import 'package:mugi/models/hasil_diagnosa.dart';
 import 'package:mugi/shared/widgets/saran_kesehatan.dart';
@@ -14,6 +15,9 @@ class RiwayatDetailScreen extends StatelessWidget {
     List<Hasil> daftarHasil = diagnosa.hasil;
 
     String img = daftarHasil.isEmpty ? "healthy.svg" : "result.svg";
+
+    var formatter = NumberFormat('#.##');
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
@@ -79,7 +83,7 @@ class RiwayatDetailScreen extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        "Kecocokan Gejala: ${hasil.persentase}%",
+                        "Kecocokan Gejala: ${formatter.format(hasil.persentase)}%",
                         style: const TextStyle(
                           color: Colors.black54,
                           fontWeight: FontWeight.bold,
