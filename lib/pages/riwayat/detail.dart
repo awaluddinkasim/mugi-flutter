@@ -18,7 +18,7 @@ class RiwayatDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
           vertical: 40,
-          horizontal: 20,
+          horizontal: 30,
         ),
         child: Column(
           children: [
@@ -67,6 +67,9 @@ class RiwayatDetailScreen extends StatelessWidget {
             else
               for (Hasil hasil in daftarHasil)
                 ListTile(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 0,
+                  ),
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [

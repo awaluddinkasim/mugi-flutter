@@ -29,7 +29,7 @@ class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
             return SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
                 vertical: 40,
-                horizontal: 20,
+                horizontal: 30,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -79,6 +79,9 @@ class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
                   else
                     for (Hasil hasil in daftarHasil)
                       ListTile(
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 0,
+                        ),
                         title: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
