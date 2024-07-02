@@ -115,6 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           label: "Password",
                           icon: const Icon(Icons.lock),
                           hintText: "Buat Password",
+                          obscureText: true,
                           controller: password,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
