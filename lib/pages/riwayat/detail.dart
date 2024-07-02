@@ -114,7 +114,7 @@ class RiwayatDetailScreen extends StatelessWidget {
                                   ),
                                   Text(
                                     hasil.penyakit.deskripsi,
-                                    style: const TextStyle(fontSize: 20),
+                                    style: const TextStyle(fontSize: 18),
                                   ),
                                   const SizedBox(
                                     height: 12,
@@ -125,7 +125,7 @@ class RiwayatDetailScreen extends StatelessWidget {
                                   ),
                                   Text(
                                     hasil.penyakit.caraPenanganan,
-                                    style: const TextStyle(fontSize: 20),
+                                    style: const TextStyle(fontSize: 18),
                                   ),
                                 ],
                               ),
