@@ -56,28 +56,15 @@ class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
                     height: 32,
                   ),
                   if (daftarHasil.isEmpty)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 32,
-                          ),
-                          child: const Text(
-                            "Tidak ada penyakit ditemukan",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Center(
-                          child: FilledButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text("Kembali"),
-                          ),
-                        ),
-                      ],
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 32,
+                      ),
+                      child: const Text(
+                        "Tidak ada penyakit ditemukan",
+                        textAlign: TextAlign.center,
+                      ),
                     )
                   else
                     for (Hasil hasil in daftarHasil)
