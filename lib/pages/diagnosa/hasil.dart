@@ -79,7 +79,7 @@ class _HasilDiagnosaScreenState extends State<HasilDiagnosaScreen> {
                   else
                     for (Hasil hasil in daftarHasil)
                       ListTile(
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                           horizontal: 0,
                         ),
                         title: Column(
