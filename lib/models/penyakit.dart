@@ -1,13 +1,15 @@
 class Penyakit {
   String nama;
-  String solusi;
+  String deskripsi;
+  String caraPenanganan;
 
-  Penyakit({required this.nama, required this.solusi});
+  Penyakit({required this.nama, required this.deskripsi, required this.caraPenanganan});
 
   factory Penyakit.fromJson(Map<String, dynamic> json) {
     return Penyakit(
       nama: json['nama'],
-      solusi: json['solusi'],
+      deskripsi: json['deskripsi'],
+      caraPenanganan: json['cara_penanganan'],
     );
   }
 }
